@@ -1,0 +1,265 @@
+/* ## Typography
+--------------------------------------------- */
+
+html {
+	scroll-behavior: smooth;
+	font-size: 57.5%;
+
+	@include media(x-small) {
+		font-size: 62.5%; // 10px browser default.
+	}
+}
+
+// Chrome bug fix.
+body > div {
+	font-size: $base-font-size;
+}
+
+body {
+	background-color: $base-background-color;
+	color: $base-font-color;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-family: $base-font-family;
+	font-size: $base-font-size;
+	font-weight: 400;
+	line-height: $base-line-height;
+	margin: 0;
+	word-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: $heading-font-family;
+	font-size: $base-font-size;
+	line-height: $heading-line-height;
+	margin: 0 0 $small-spacing;
+	font-weight: 700;
+}
+
+h5,
+h6 {
+	color: $primary-color;
+	text-transform: uppercase;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+
+// Use a modular scale to size all headings automatically.
+@for $i from 1 through 6 {
+	h#{$i} {
+		font-size: modular-scale((6 - $i), 1.6rem, $major-third);
+	}
+}
+
+p {
+	margin: 0 0 $small-spacing;
+	padding: 0;
+}
+
+p.lead-text,
+.single,
+.page {
+	.entry-content p:first-of-type {
+		font-size: $base-font-size * 1.2;
+		line-height: 1.5;
+	}
+}
+
+p.has-drop-cap:not(:focus)::first-letter {
+	font-family: $heading-font-family;
+	font-size: 8rem;
+	font-weight: 700;
+}
+
+code,
+kbd {
+	font-size: $base-font-size / 1.1;
+	background-color: $dark-grey;
+	color: $base-background-color;
+	padding: 0.2rem 0.4rem;
+}
+
+pre code {
+	background-color: inherit;
+	color: inherit;
+	padding: inherit;
+}
+
+pre {
+	font-size: 1.6rem;
+	color: #000;
+	border: 1px solid $medium-grey;
+	width: 100%;
+	border-left: 6px solid $medium-grey;
+	padding: 14px;
+	overflow: auto;
+	word-wrap: normal;
+	// Fixed line height.
+	line-height: 24px;
+	// Use linear-gradient for background image.
+	background-image: linear-gradient(180deg, #eeeeee 50%, #f9f9f9 50%);
+	// Size background so that the height is 2x line-height.
+	background-size: 100% 48px;
+	// Offset the background along the y-axis by top padding.
+	background-position: 0 14px;
+}
+
+mark {
+	padding: 0.2rem;
+	background-color: #fcefa9;
+	font-size: 95%;
+}
+
+sup {
+	text-transform: lowercase;
+}
+
+address {
+	margin-bottom: $base-spacing;
+}
+
+a,
+button,
+input:focus,
+input[type='button'],
+input[type='reset'],
+input[type='submit'],
+textarea:focus,
+.button {
+	transition: all 0.1s ease-in-out;
+}
+
+a,
+a abbr[title] {
+	color: $primary-color;
+	text-decoration: underline;
+	transition: color 0.1s linear;
+
+	&:active,
+	&:focus,
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+a.label-link {
+	background-color: $primary-color;
+	display: inline;
+	padding: 0.3rem 0.6rem;
+	font-size: 85%;
+	font-weight: 400;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: 3px;
+	border-bottom: none;
+	text-decoration: none;
+
+	&:hover {
+		background-color: darken($primary-color, 5%);
+		text-decoration: underline;
+	}
+}
+
+a img {
+	border: none;
+}
+
+a[href^='tel'],
+a[href^='fax'] {
+	color: inherit;
+	text-decoration: none;
+}
+
+a code {
+	color: lighten($primary-color, 15%);
+}
+
+hr {
+	border-bottom: $base-border;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	margin: $base-spacing * 1.5 0;
+}
+
+blockquote {
+	border-left: 4px solid $primary-color;
+	margin: $base-spacing 0 $base-spacing $small-spacing;
+	padding-left: 2rem;
+	font-size: 2.1rem;
+	font-style: italic;
+}
+
+blockquote cite {
+	color: #666;
+	font-size: 1.8rem;
+	text-align: inherit;
+	display: block;
+	margin-top: 1rem;
+}
+
+q {
+	font-size: $base-font-size;
+	font-style: italic;
+}
+
+.content-box-blue,
+.content-box-gray,
+.content-box-green,
+.content-box-purple,
+.content-box-red,
+.content-box-yellow,
+.format-status .entry-content p {
+	margin-bottom: $base-spacing;
+	padding: $base-spacing;
+	overflow: hidden;
+}
+
+.content-box-blue {
+	background-color: $notice-color;
+	border: 1px solid darken($notice-color, 10%);
+	color: darken($notice-color, 60%);
+}
+
+.content-box-gray {
+	background-color: $light-grey;
+	border: 1px solid darken($light-grey, 10%);
+	color: darken($light-grey, 60%);
+}
+
+.content-box-green {
+	background-color: $success-color;
+	border: 1px solid darken($success-color, 10%);
+	color: darken($success-color, 60%);
+}
+
+.content-box-purple {
+	background-color: #e2e2f9;
+	border: 1px solid darken(#e2e2f9, 10%);
+	color: darken(#e2e2f9, 60%);
+}
+
+.content-box-red {
+	background-color: $error-color;
+	border: 1px solid darken($error-color, 10%);
+	color: darken($error-color, 60%);
+}
+
+.content-box-yellow {
+	background-color: $alert-color;
+	border: 1px solid darken($alert-color, 10%);
+	color: darken($alert-color, 60%);
+}
+
+.format-status .entry-content p {
+	background-color: $primary-color;
+	border: 1px solid darken($primary-color, 10%);
+	color: darken($primary-color, 60%);
+}

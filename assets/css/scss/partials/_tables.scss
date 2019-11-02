@@ -1,0 +1,36 @@
+/* ## Tables
+--------------------------------------------- */
+
+table {
+	border-collapse: collapse;
+	margin: $base-spacing 0;
+	table-layout: fixed;
+	width: 100%;
+	word-break: break-word;
+}
+
+td,
+th {
+	text-align: left;
+	border-bottom: 1px solid darken($base-border-color, 15%);
+}
+
+td {
+	padding: $small-spacing / 2;
+}
+
+th {
+	font-weight: 600;
+	padding: 0 $small-spacing / 2;
+}
+
+td:first-child,
+th:first-child {
+	padding-left: 0;
+}
+
+tr,
+td,
+th {
+	vertical-align: middle;
+}

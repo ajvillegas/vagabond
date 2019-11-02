@@ -1,0 +1,57 @@
+.entry-meta {
+	font-size: 1.6rem;
+	font-style: italic;
+	margin-bottom: $small-spacing;
+
+	.posted-on,
+	.author-link,
+	.comments-link {
+		font-style: normal;
+	}
+
+	.author-link,
+	.comments-link a {
+		text-decoration: none;
+
+		&:focus,
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+.header-hero .entry-meta {
+	color: #ededed;
+
+	.author-link,
+	.comments-link a {
+		color: #ededed;
+	}
+}
+
+.cat-links,
+.tag-links {
+	display: block;
+}
+
+.entry-footer {
+	.entry-meta {
+		color: inherit;
+		font-style: inherit;
+		border-top: 1px solid $light-grey;
+		padding-top: 1rem;
+	}
+
+	.svg-icon svg {
+		width: auto;
+		height: 1.7rem;
+		position: relative;
+		top: 2px;
+		margin-right: 5px;
+		fill: darken($medium-grey, 15%);
+
+		g path {
+			fill: $medium-grey;
+		}
+	}
+}

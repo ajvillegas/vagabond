@@ -1,0 +1,126 @@
+/* ## Column Classes
+--------------------------------------------- */
+
+%column-defaults {
+	width: 100%;
+	margin-left: 0;
+}
+
+.one-half,
+.three-sixths,
+.two-fourths {
+	@extend %column-defaults;
+
+	@include media(medium) {
+		float: left;
+		margin-left: percentage($column-gutter / $max-width);
+		width: col_width(1, 2, $max-width, $column-gutter);
+	}
+}
+
+.one-third,
+.two-sixths {
+	@extend %column-defaults;
+
+	@include media(medium) {
+		float: left;
+		margin-left: percentage($column-gutter / $max-width);
+		width: col_width(1, 3, $max-width, $column-gutter);
+	}
+}
+
+.two-thirds,
+.four-sixths {
+	@extend %column-defaults;
+
+	@include media(medium) {
+		float: left;
+		margin-left: percentage($column-gutter / $max-width);
+		width: col_width(2, 3, $max-width, $column-gutter);
+	}
+}
+
+.one-fourth {
+	@extend %column-defaults;
+
+	@include media(medium) {
+		float: left;
+		margin-left: percentage($column-gutter / $max-width);
+		width: col_width(1, 4, $max-width, $column-gutter);
+	}
+}
+
+.three-fourths {
+	@extend %column-defaults;
+
+	@include media(medium) {
+		float: left;
+		margin-left: percentage($column-gutter / $max-width);
+		width: col_width(3, 4, $max-width, $column-gutter);
+	}
+}
+
+.one-fifth {
+	@extend %column-defaults;
+
+	@include media(medium) {
+		float: left;
+		margin-left: percentage($column-gutter / $max-width);
+		width: col_width(1, 5, $max-width, $column-gutter);
+	}
+}
+
+.two-fifths {
+	@extend %column-defaults;
+
+	@include media(medium) {
+		float: left;
+		margin-left: percentage($column-gutter / $max-width);
+		width: col_width(2, 5, $max-width, $column-gutter);
+	}
+}
+
+.three-fifths {
+	@extend %column-defaults;
+
+	@include media(medium) {
+		float: left;
+		margin-left: percentage($column-gutter / $max-width);
+		width: col_width(3, 5, $max-width, $column-gutter);
+	}
+}
+
+.four-fifths {
+	@extend %column-defaults;
+
+	@include media(medium) {
+		float: left;
+		margin-left: percentage($column-gutter / $max-width);
+		width: col_width(4, 5, $max-width, $column-gutter);
+	}
+}
+
+.one-sixth {
+	@extend %column-defaults;
+
+	@include media(medium) {
+		float: left;
+		margin-left: percentage($column-gutter / $max-width);
+		width: col_width(1, 6, $max-width, $column-gutter);
+	}
+}
+
+.five-sixths {
+	@extend %column-defaults;
+
+	@include media(medium) {
+		float: left;
+		margin-left: percentage($column-gutter / $max-width);
+		width: col_width(5, 6, $max-width, $column-gutter);
+	}
+}
+
+.first {
+	clear: both;
+	margin-left: 0 !important;
+}

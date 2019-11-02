@@ -1,0 +1,100 @@
+.entry-comments {
+	margin: $base-spacing * 2 0 0;
+
+	.comments-title {
+		margin-bottom: $base-spacing;
+	}
+
+	.avatar {
+		margin-right: $base-spacing / 2;
+	}
+}
+
+.content .comment-list {
+	padding-left: 0;
+}
+
+.comment {
+	list-style-type: none;
+	margin-bottom: $base-spacing;
+
+	.comment-header,
+	.comment-content,
+	.reply {
+		font-size: 1.8rem;
+	}
+
+	img.avatar {
+		float: left;
+		margin: 0 $base-spacing / 2 $base-spacing / 2 0;
+		border-radius: 50%;
+	}
+
+	.comment-metadata {
+		margin-bottom: $base-spacing;
+	}
+
+	.comment-content p {
+		margin-bottom: $base-spacing / 2;
+	}
+
+	.comment-author-name {
+		font-weight: 700;
+		color: $dark-grey;
+	}
+
+	.comment-metadata {
+		margin-bottom: $base-spacing;
+		font-size: 14px;
+		font-style: italic;
+	}
+
+	// Nested comments.
+	ul.children {
+		list-style: none;
+		margin-left: 0;
+		padding-left: 0;
+		margin-top: $base-spacing;
+
+		@include media(x-small) {
+			margin-left: $base-spacing;
+			padding-left: $base-spacing / 2;
+			margin-top: $base-spacing;
+		}
+
+		li {
+			list-style: none;
+			padding: 0;
+			border-left: 1px solid $light-grey;
+
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+
+			@include media(x-small) {
+				padding: $base-spacing / 1.5;
+			}
+		}
+	}
+}
+
+.comment-meta {
+	@include clearfix;
+	font-size: 1.8rem;
+
+	p.comment-author {
+		margin-bottom: 0;
+	}
+}
+
+.comment-respond {
+	margin: $base-spacing * 2 0 0;
+}
+
+.comment-form-cookies-consent label {
+	display: inline;
+}
+
+p.logged-in-as {
+	font-size: 1.8rem;
+}

@@ -1,0 +1,20 @@
+// Generate mobile-first media queries.
+@mixin media($breakpoint) {
+	@if map-has-key($breakpoints, $breakpoint) {
+		@media only screen and (min-width: #{map-get($breakpoints, $breakpoint)}) {
+			@content;
+		}
+	} @else {
+		@warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+		+ "Please make sure it is defined in `$breakpoints` map.";
+	}
+}
+
+// Calculate column width value.
+@function col_width($n, $total_columns, $total_width: 1170px, $gutter_width: 30px) {
+	$col_width: ($total_width - ($gutter_width * ($total_columns - 1))) / $total_columns;
+	$total_width: $total_width;
+	$columns_width: ($n * $col_width) + (($n - 1) * $gutter_width);
+
+	@return percentage($columns_width / $total_width);
+}

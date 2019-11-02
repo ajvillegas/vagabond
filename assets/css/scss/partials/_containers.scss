@@ -1,0 +1,39 @@
+/* ## Site Structure
+--------------------------------------------- */
+
+.site-inner,
+.content-sidebar-wrap,
+.wrap {
+	margin: 0 auto;
+}
+
+.content-sidebar-wrap,
+.wrap {
+	max-width: $max-width;
+}
+
+.site-inner {
+	max-width: 100%;
+	padding-right: $small-spacing;
+	padding-left: $small-spacing;
+}
+
+.content-sidebar {
+	.content {
+		@media only screen and (min-width: 900px) {
+			float: left;
+			width: col_width(2, 3, $max-width, $column-gutter);
+		}
+	}
+
+	.sidebar {
+		margin-right: auto;
+		margin-left: auto;
+
+		@media only screen and (min-width: 900px) {
+			float: right;
+			margin-left: percentage($column-gutter / $max-width);
+			width: col_width(1, 3, $max-width, $column-gutter);
+		}
+	}
+}

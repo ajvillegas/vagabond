@@ -1,0 +1,32 @@
+/* # Visual Grid Overlay
+---------------------------------------------------------------------------------------------------- */
+
+.grid-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+}
+
+.grid-overlay .wrap {
+	max-width: $max-width;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.grid-overlay .wrap > div {
+	height: 100vh;
+	float: left;
+}
+
+.grid-overlay .gutter {
+	width: percentage($column-gutter / $max-width);
+}
+
+.grid-overlay .col {
+	width: col_width(1, 12, $max-width, $column-gutter);
+	background: pink;
+	opacity: 0.4;
+}

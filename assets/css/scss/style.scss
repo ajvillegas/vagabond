@@ -1,0 +1,87 @@
+/*!
+Theme Name: Vagabond
+Theme URI: http://www.alexisvillegas.com/services/
+Description: A travel and lifestyle blog theme for WordPress.
+Author: Alexis J. Villegas
+Author URI: http://www.alexisvillegas.com/
+Version: 1.0.0
+Text Domain: vagabond
+Tags: one-column, two-columns, left-sidebar, right-sidebar, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, sticky-post, threaded-comments, translation-ready
+License: GPL-2.0+
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+@import 'modules/variables';
+@import 'modules/mixins';
+@import 'vendor/bourbon/app/assets/stylesheets/bourbon';
+
+/* # HTML Reset
+---------------------------------------------------------------------------------------------------- */
+
+@import 'partials/normalize';
+
+/* # Accessibility
+---------------------------------------------------------------------------------------------------- */
+
+@import 'partials/accessibility';
+
+/* # Default Elements
+---------------------------------------------------------------------------------------------------- */
+
+@import 'partials/typography';
+@import 'partials/buttons';
+@import 'partials/lists';
+@import 'partials/forms';
+@import 'partials/tables';
+
+/* # Structure and Layout
+---------------------------------------------------------------------------------------------------- */
+
+@import 'partials/containers';
+//@import 'partials/columns';
+
+/* # Site Header
+---------------------------------------------------------------------------------------------------- */
+
+@import 'partials/header';
+
+/* # Site Navigation
+---------------------------------------------------------------------------------------------------- */
+
+@import 'partials/menu';
+
+/* # Content Area
+---------------------------------------------------------------------------------------------------- */
+
+@import 'partials/content';
+//@import 'partials/archives';
+@import 'partials/entry-meta';
+@import 'partials/comments';
+
+/* # Site Footer
+---------------------------------------------------------------------------------------------------- */
+
+@import 'partials/footer';
+
+/* # Widgets
+---------------------------------------------------------------------------------------------------- */
+
+//@import 'partials/widgets';
+
+/* # Plugins
+---------------------------------------------------------------------------------------------------- */
+
+//@import 'partials/plugins';
+
+/* # Page Templates
+---------------------------------------------------------------------------------------------------- */
+
+@import 'partials/color-palette';
+//@import 'partials/projects';
+
+/* # Block Editor
+---------------------------------------------------------------------------------------------------- */
+
+//@import 'partials/block-editor';
+
+@import 'partials/visual-grid';

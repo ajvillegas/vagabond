@@ -1,0 +1,8 @@
+# Minified Files #
+*.min.css
+*.min.js
+
+# WordPress Stylesheet #
+# We are using Gulp to generate and format this stylsheet.
+style.css
+style-rtl.css

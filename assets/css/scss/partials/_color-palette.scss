@@ -1,0 +1,212 @@
+/* ## Color Palette Section
+--------------------------------------------- */
+
+#colors {
+	@include clearfix;
+	//margin-bottom: $base-spacing;
+
+	.primary-color {
+		background-color: $primary-color;
+		border: 1px solid $primary-color;
+
+		.color-heading,
+		.color-values {
+			color: darken($primary-color, 60%);
+		}
+	}
+
+	.secondary-color {
+		background-color: $secondary-color;
+		border: 1px solid $secondary-color;
+
+		.color-heading,
+		.color-values {
+			color: darken($secondary-color, 60%);
+		}
+	}
+
+	.accent-color {
+		background-color: $tertiary-color;
+		border: 1px solid $tertiary-color;
+
+		.color-heading,
+		.color-values {
+			color: darken($tertiary-color, 60%);
+		}
+	}
+
+	.background-color {
+		background-color: $base-background-color;
+		border: 1px solid darken($base-background-color, 15%);
+
+		.color-heading,
+		.color-values {
+			color: darken($base-background-color, 60%);
+		}
+	}
+
+	.dark-grey {
+		background-color: $dark-grey;
+		border: 1px solid $dark-grey;
+
+		.color-heading,
+		.color-values {
+			color: darken($dark-grey, 60%);
+		}
+	}
+
+	.medium-grey {
+		background-color: $medium-grey;
+		border: 1px solid $medium-grey;
+
+		.color-heading,
+		.color-values {
+			color: darken($medium-grey, 60%);
+		}
+	}
+
+	.light-grey {
+		background-color: $light-grey;
+		border: 1px solid $light-grey;
+
+		.color-heading,
+		.color-values {
+			color: darken($light-grey, 60%);
+		}
+	}
+
+	.very-light-grey {
+		background-color: $very-light-grey;
+		border: 1px solid $very-light-grey;
+
+		.color-heading,
+		.color-values {
+			color: darken($very-light-grey, 60%);
+		}
+	}
+
+	.alert-color {
+		background-color: $alert-color;
+		border: 1px solid $alert-color;
+
+		.color-heading,
+		.color-values {
+			color: darken($alert-color, 60%);
+		}
+	}
+
+	.error-color {
+		background-color: $error-color;
+		border: 1px solid $error-color;
+
+		.color-heading,
+		.color-values {
+			color: darken($error-color, 60%);
+		}
+	}
+
+	.notice-color {
+		background-color: $notice-color;
+		border: 1px solid $notice-color;
+
+		.color-heading,
+		.color-values {
+			color: darken($notice-color, 60%);
+		}
+	}
+
+	.success-color {
+		background-color: $success-color;
+		border: 1px solid $success-color;
+
+		.color-heading,
+		.color-values {
+			color: darken($success-color, 60%);
+		}
+	}
+
+	.primary-color-text {
+		color: $primary-color;
+	}
+
+	.secondary-color-text {
+		color: $secondary-color;
+	}
+
+	.accent-color-text {
+		color: $tertiary-color;
+	}
+
+	.background-color-text {
+		color: $base-background-color;
+	}
+
+	.color-section {
+		@include clearfix;
+		//margin-bottom: $small-spacing;
+
+		.color-group {
+			@include clearfix;
+
+			div[class^='col-'] {
+				margin-bottom: 2rem;
+			}
+
+			> div > div {
+				position: relative;
+				width: 100%;
+				min-height: 200px;
+				display: table;
+				word-break: break-word;
+
+				.color-info {
+					display: table-cell;
+					vertical-align: bottom;
+					margin: 0;
+
+					span {
+						display: block;
+						position: absolute;
+						left: 1rem;
+						font-size: $base-font-size / 1.1;
+					}
+
+					span.color-heading {
+						text-transform: uppercase;
+						top: 1rem;
+					}
+
+					span.color-values {
+						bottom: 1rem;
+					}
+				}
+			}
+		}
+
+		.color-text-group {
+			@include clearfix;
+
+			div[class^='col-'] {
+				margin-bottom: 2rem;
+			}
+
+			> div > div {
+				width: 100%;
+				min-height: 185px;
+				display: table;
+
+				p {
+					display: table-cell;
+					vertical-align: middle;
+					text-align: left;
+					padding: 3rem;
+					margin: 0;
+
+					@include media(small) {
+						padding: 6rem;
+					}
+				}
+			}
+		}
+	}
+}

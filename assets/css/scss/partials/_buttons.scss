@@ -1,0 +1,147 @@
+/* ## Buttons
+--------------------------------------------- */
+
+@mixin buttons($important: false) {
+	$imp: null;
+
+	@if $important == true {
+		$imp: !important;
+	} @else {
+		$imp: null;
+	}
+
+	appearance: none $imp;
+	-webkit-font-smoothing: antialiased $imp;
+	background-color: $primary-color $imp;
+	border-radius: $base-border-radius $imp;
+	border: 2px solid $primary-color $imp;
+	color: #fff $imp;
+	cursor: pointer $imp;
+	display: inline-block $imp;
+	font-family: $base-font-family $imp;
+	font-size: 1.4rem $imp;
+	font-weight: 400 $imp;
+	line-height: 1 $imp;
+	padding: 1.2rem 1.6rem $imp;
+	text-decoration: none $imp;
+	user-select: none $imp;
+	vertical-align: middle $imp;
+	white-space: normal $imp;
+	position: relative $imp;
+
+	&:hover,
+	&:focus {
+		background-color: $secondary-color $imp;
+		color: #fff $imp;
+		border: 2px solid $secondary-color $imp;
+		top: 1px $imp;
+	}
+
+	&:disabled {
+		cursor: not-allowed $imp;
+		opacity: 0.5 $imp;
+	}
+}
+
+#{$all-buttons},
+button,
+.button,
+a.button {
+	@include buttons(false);
+	text-transform: uppercase;
+	font-weight: 600;
+}
+
+a.button {
+	color: #fff;
+	text-decoration: none;
+}
+
+.button,
+button {
+	&:focus {
+		outline: none;
+	}
+}
+
+.button.button-small {
+	padding: 0.5rem 1rem;
+	font-size: 1.3rem;
+}
+
+.button.button-large {
+	padding: 1.2rem 4rem;
+	font-size: 1.6rem;
+}
+
+.button.button-secondary {
+	background-color: $secondary-color;
+	border: 2px solid $secondary-color;
+
+	&:hover,
+	&:focus {
+		background-color: darken($primary-color, 10%);
+		border: 2px solid darken($primary-color, 10%);
+	}
+}
+
+.button.button-tertiary {
+	background-color: $tertiary-color;
+	border: 2px solid $tertiary-color;
+
+	&:hover,
+	&:focus {
+		background-color: darken($tertiary-color, 5%);
+		border: 2px solid darken($tertiary-color, 5%);
+	}
+}
+
+.button.button-ghost {
+	background-color: transparent;
+	border: 2px solid darken($light-grey, 10%);
+	color: darken($light-grey, 25%);
+
+	&:hover,
+	&:focus {
+		background-color: darken($light-grey, 25%);
+		border: 2px solid darken($light-grey, 25%);
+		color: #fff;
+	}
+}
+
+.button.button-square {
+	border-radius: $base-border-radius;
+}
+
+.button.button-round {
+	border-radius: 50px;
+	padding: 1.4rem 3rem;
+}
+
+.button.button-full {
+	width: 100%;
+}
+
+/* ## Scroll To Top Button
+--------------------------------------------- */
+
+.to-top {
+	opacity: 0.5;
+	width: 40px;
+	height: 40px;
+	position: fixed;
+	bottom: 15px;
+	right: 15px;
+	border-radius: 0;
+	border: 3px solid transparent;
+	background: rgba($primary-color, 0.8) url(assets/images/to-top.svg) no-repeat center 50%;
+	background-size: 15px 15px;
+	display: none;
+	z-index: 1;
+
+	&:hover,
+	&:focus {
+		opacity: 1;
+		top: inherit;
+	}
+}
