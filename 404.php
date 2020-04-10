@@ -18,20 +18,6 @@ get_header();
 ?>
 <div class="content-sidebar-wrap">
 	<main id="site-content" class="content">
-
-		<?php
-		if ( function_exists( 'breadcrumb_trail' ) ) {
-			breadcrumb_trail(
-				array(
-					'show_on_front' => false,
-					'labels'        => array(
-						'browse' => esc_html__( 'You are here:', 'vagabond' ),
-					),
-				)
-			);
-		}
-
-		?>
 		<section class="error-404 not-found entry">
 			<div class="entry-content">
 				<?php
