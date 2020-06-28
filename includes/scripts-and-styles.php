@@ -91,6 +91,19 @@ function vagabond_scripts_and_styles() {
 	// Sitewide JS.
 	wp_enqueue_script( 'vagabond-site-js', VAGABOND_JS . "/custom{$suffix}.js", array( 'jquery', 'vagabond-bootstrapjs' ), VAGABOND_THEME_VERSION, true );
 
+	// matchHeight JS.
+	if ( is_front_page()
+		|| is_home()
+		|| is_archive()
+		|| is_page_template( 'page-templates/template-posts.php' )
+	) {
+
+		wp_enqueue_script( 'vagabond-matchheight', VAGABOND_JS . '/jquery.matchHeight.min.js', array( 'jquery' ), '0.7.2', true );
+
+		wp_add_inline_script( 'vagabond-matchheight', "jQuery(document).ready( function() { jQuery('.content .entry, .posts-section .entry').matchHeight(); } );" );
+
+	}
+
 }
 
 add_action( 'admin_enqueue_scripts', 'vagabond_admin_scripts_and_styles' );
