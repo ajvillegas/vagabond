@@ -66,7 +66,7 @@ if ( ! defined( 'VAGABOND_DEVELOPER_LOGO' ) ) {
 
 // @type constant Theme lib folder location.
 if ( ! defined( 'VAGABOND_INC_DIR' ) ) {
-	define( 'VAGABOND_INC_DIR', get_template_directory() . '/inc' );
+	define( 'VAGABOND_INC_DIR', get_template_directory() . '/includes' );
 }
 
 // @type constant Theme images folder location.
@@ -88,7 +88,7 @@ if ( ! defined( 'VAGABOND_CSS_DIR' ) ) {
 
 // @type constant Theme lib URL location.
 if ( ! defined( 'VAGABOND_INC' ) ) {
-	define( 'VAGABOND_INC', get_template_directory_uri() . '/inc' );
+	define( 'VAGABOND_INC', get_template_directory_uri() . '/includes' );
 }
 
 // @type constant Theme images URL location.
