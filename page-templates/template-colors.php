@@ -20,13 +20,37 @@ add_filter( 'body_class', 'vagabond_colors_body_class' );
  * Adds a unique class to the body element.
  *
  * @since 1.0.0
+ *
  * @param array $classes Array of classes applied to the body class attribute.
+ *
  * @return array $classes The updated array of classes applied to the body class attribute.
  */
 function vagabond_colors_body_class( $classes ) {
 
 	$classes[] = 'color-palette';
+
 	return $classes;
+
+}
+
+add_filter( 'vagabond_default_content_layout', 'vagabond_set_colors_page_layout' );
+/**
+ * Force the full-width content layout.
+ *
+ * See /includes/layouts.php.
+ *
+ * @since 1.0.0
+ *
+ * @param string $layout The current default layout.
+ *
+ * @return string $layout The new default layout.
+ */
+function vagabond_set_colors_page_layout( $layout ) {
+
+	// Define the page layout.
+	$layout = 'full-width-content';
+
+	return $layout;
 
 }
 
