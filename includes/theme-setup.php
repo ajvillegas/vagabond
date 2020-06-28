@@ -85,9 +85,12 @@ if ( ! function_exists( 'vagabond_theme_setup' ) ) {
 		add_image_size( 'hero-image', 1500, 1000, true );
 		add_image_size( 'featured-image', 800, 400, true );
 
-		// Add support for the Layout Settings meta box.
+		// Add support for the Layout Settings meta box (see /includes/layouts.php).
 		add_post_type_support( 'post', 'vagabond-layouts' );
 		add_post_type_support( 'page', 'vagabond-layouts' );
+
+		// Add support for custom backgrounds.
+		add_theme_support( 'custom-background', array( 'default-color' => 'f4f4f4' ) );
 
 		// Add support for Bootstrap 4 navigation menus.
 		require_once VAGABOND_INC_DIR . '/class-wp-bootstrap-navwalker.php';
@@ -102,6 +105,7 @@ add_action( 'after_setup_theme', 'vagabond_content_width', 0 );
  * Priority 0 to make it available to lower priority callbacks.
  *
  * @since 1.0.0
+ *
  * @global int $content_width
  */
 function vagabond_content_width() {
@@ -155,7 +159,7 @@ add_filter( 'vagabond_default_content_layout', 'vagabond_set_default_layout' );
 /**
  * Set the default theme content layout.
  *
- * See /inc/layouts.php.
+ * See /includes/layouts.php.
  *
  * @since 1.0.0
  *
@@ -165,10 +169,39 @@ add_filter( 'vagabond_default_content_layout', 'vagabond_set_default_layout' );
  */
 function vagabond_set_default_layout( $layout ) {
 
-	$layout = 'content-sidebar';
+	// Define the default layout.
+	$default_layout = get_theme_mod( 'vagabond_default_layout' ) ? get_theme_mod( 'vagabond_default_layout' ) : 'default-layout';
+
+	if ( is_home() || is_front_page() || is_archive() ) {
+		$layout = 'full-width-content';
+	} elseif ( is_search() ) {
+		$layout = 'content-sidebar';
+	} else {
+		$layout = $default_layout;
+	}
 
 	return $layout;
 
+}
+
+add_filter( 'body_class', 'vagabond_add_singular_body_class' );
+/**
+ * Add a 'singular' class to the array of body classes.
+ * Useful for styling purposes.
+ *
+ * @since 1.0.0
+ *
+ * @param array $classes Array of classes applied to the body class attribute.
+ *
+ * @return array $classes The updated array of classes applied to the body class attribute.
+ */
+function vagabond_add_singular_body_class( $classes ) {
+
+	if ( is_singular() && ! is_front_page() ) {
+		$classes[] = 'singular';
+	}
+
+	return $classes;
 }
 
 add_filter( 'body_class', 'vagabond_body_classes' );
@@ -275,21 +308,70 @@ add_filter( 'excerpt_more', 'vagabond_excerpt_more' );
  *
  * @since 1.0.0
  *
- * @param string $more Current "read more" excerpt string.
+ * @param string $more_string Current "read more" excerpt string.
  *
- * @return string $more Amended "read more" excerpt string.
+ * @return string $more_string Amended "read more" excerpt string.
  */
-function vagabond_excerpt_more( $more ) {
+function vagabond_excerpt_more( $more_string ) {
 
-	$more = '... ' . sprintf(
+	$more_text = is_front_page() ? esc_html__( 'Read More', 'vagabond' ) : esc_html__( 'Continue Reading', 'vagabond' );
+
+	$more_string = '... ' . sprintf(
 		'<a class="more-link" href="%1$s">%2$s</a>',
 		get_permalink( get_the_ID() ),
-		esc_html__( 'Continue Reading', 'vagabond' )
+		$more_text
 	);
 
-	return $more;
+	return $more_string;
 
 }
+
+add_filter( 'get_the_excerpt', 'vagabond_manual_excerpt_more' );
+/**
+ * Filter the retrieved post excerpt.
+ *
+ * This function adds a "read more" link to the manual excerpt.
+ *
+ * @since 1.0.0
+ *
+ * @param string $post_excerpt The post excerpt.
+ *
+ * @return string $post_excerpt The modified post excerpt.
+ */
+function vagabond_manual_excerpt_more( $post_excerpt ) {
+
+	$more_text = is_front_page() ? esc_html__( 'Read More', 'vagabond' ) : esc_html__( 'Continue Reading', 'vagabond' );
+
+	if ( has_excerpt() ) {
+		$more_string = sprintf(
+			'<a class="more-link" href="%1$s">%2$s</a>',
+			get_permalink( get_the_ID() ),
+			$more_text
+		);
+
+		return $post_excerpt . $more_string;
+	} else {
+		return $post_excerpt;
+	}
+
+}
+
+add_filter( 'excerpt_length', 'vagabond_excerpt_length' );
+/**
+ * Filter the number of words in an excerpt (default 55).
+ *
+ * @since 1.0.0
+ *
+ * @param int $number The default number of words.
+ *
+ * @return int $number The amended number of words.
+ */
+function vagabond_excerpt_length( $number ) {
+
+	return 20;
+
+}
+
 
 add_filter( 'nav_menu_css_class', 'vagabond_blog_menu_item_classes', 10, 3 );
 /**
@@ -305,12 +387,137 @@ add_filter( 'nav_menu_css_class', 'vagabond_blog_menu_item_classes', 10, 3 );
  */
 function vagabond_blog_menu_item_classes( $classes, $item, $args ) {
 
-	if ( ( ( is_singular( 'post' ) || is_category() ) && 'Blog' === $item->title ) ) {
+	if ( ( ( is_singular( 'post' ) || is_category() || is_tag() ) && 'Blog' === $item->title )
+		|| ( is_singular( 'ajv_portfolio' ) && 'Portfolio' === $item->title )
+	) {
 
 		$classes[] = 'current-menu-item';
 
 	}
 
 	return array_unique( $classes );
+
+}
+
+add_filter( 'pre_get_posts', 'vagabond_ignore_sticky_posts' );
+/**
+ * Filter the query variable object before the actual query is run.
+ *
+ * This function removes support for sticky posts to prevent issues with
+ * the grid style loop and the number of posts being shown on a page.
+ *
+ * @since 1.0.0
+ *
+ * @param object $query The WP_Query instance (passed by reference).
+ */
+function vagabond_ignore_sticky_posts( $query ) {
+
+	/**
+	 * Not a query for an admin page and it's the main query
+	 * for a front end page of your site.
+	 */
+	if ( ! is_admin() && $query->is_main_query() ) {
+		$query->set( 'ignore_sticky_posts', 1 );
+	}
+
+}
+
+add_shortcode( 'year', 'vagabond_register_year_shortcode' );
+/**
+ * Register "year" shortcode.
+ *
+ * This function registers a shortcode that displays the current year.
+ * Useful for displaying the year in the footer credits section.
+ *
+ * @since 1.0.0
+ */
+function vagabond_register_year_shortcode() {
+
+	$year = date_i18n( 'Y' );
+
+	return $year;
+
+}
+
+add_filter( 'get_the_terms', 'vagabond_get_the_terms_exclude', 10, 3 );
+/**
+ * Filters the list of terms attached to the given post.
+ *
+ * This function removes certain categories from being displayed under
+ * the entry meta for a post.
+ *
+ * @since 1.0.0
+ *
+ * @param array  $terms    List of attached terms, or WP_Error on failure.
+ * @param int    $post_id  Post ID.
+ * @param string $taxonomy Name of the taxonomy.
+ *
+ * @return array
+ */
+function vagabond_get_the_terms_exclude( $terms, $post_id, $taxonomy ) {
+
+	if ( ! is_admin() && is_array( $terms ) ) {
+		$exclude = array(
+			'Home Hero',
+			'Uncategorized',
+		);
+		$_terms  = array();
+
+		foreach ( $terms as $key => $term ) {
+			if ( ! in_array( $term->name, $exclude, true ) ) {
+				$_terms[ $key ] = $term;
+			}
+		}
+
+		$terms = $_terms;
+
+		unset( $_terms );
+	}
+
+	return $terms;
+
+}
+
+add_filter( 'widget_categories_args', 'vagabond_widget_categories_args' );
+/**
+ * Filters the arguments for the Categories widget.
+ *
+ * This function removes certain categories from being displayed under
+ * the Categories widget output list.
+ *
+ * @since 1.0.0
+ *
+ * @param array $cat_args An array of Categories widget options.
+ *
+ * @return array
+ */
+function vagabond_widget_categories_args( $cat_args ) {
+
+	$exclude = array(
+		get_cat_ID( 'Home Hero' ),
+		get_cat_ID( 'Uncategorized' ),
+	);
+
+	if ( isset( $cat_args['exclude'] ) && ! empty( $cat_args['exclude'] ) ) {
+		$exclude = array_unique( array_merge( explode( ',', $cat_args['exclude'] ), $exclude ) );
+	}
+
+	$cat_args['exclude'] = implode( ',', $exclude );
+
+	return $cat_args;
+
+}
+
+add_filter( 'vagabong_featured_posts_page_196_category', 'vagabong_featured_posts_page_category' );
+/**
+ * Filters the features posts page template category.
+ *
+ * See /page-templates/template-posts.php
+ *
+ * @since 1.0.0
+ */
+function vagabong_featured_posts_page_category() {
+
+	return 'adventure';
 
 }
