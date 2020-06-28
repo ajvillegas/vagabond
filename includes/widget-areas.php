@@ -32,22 +32,22 @@ function vagabond_register_widget_areas() {
 		array(
 			'id'          => 'footer-widgets-1',
 			'name'        => esc_html__( 'Footer Widget 1', 'vagabond' ),
-			'description' => esc_html__( 'This is the footer widget area 1.', 'vagabond' ),
+			'description' => esc_html__( 'This is the top left footer widget area.', 'vagabond' ),
 		),
 		array(
 			'id'          => 'footer-widgets-2',
 			'name'        => esc_html__( 'Footer Widget 2', 'vagabond' ),
-			'description' => esc_html__( 'This is the footer widget area 2.', 'vagabond' ),
+			'description' => esc_html__( 'This is the top middle footer widget area.', 'vagabond' ),
 		),
 		array(
 			'id'          => 'footer-widgets-3',
 			'name'        => esc_html__( 'Footer Widget 3', 'vagabond' ),
-			'description' => esc_html__( 'This is the footer widget area 3.', 'vagabond' ),
+			'description' => esc_html__( 'This is the top right footer widget area.', 'vagabond' ),
 		),
 		array(
 			'id'          => 'footer-widgets-4',
 			'name'        => esc_html__( 'Footer Widget 4', 'vagabond' ),
-			'description' => esc_html__( 'This is the footer widget area 4.', 'vagabond' ),
+			'description' => esc_html__( 'This is the bottom footer widget area.', 'vagabond' ),
 		),
 	);
 
