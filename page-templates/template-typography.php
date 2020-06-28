@@ -15,18 +15,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-add_filter( 'body_class', 'prototipo_theme_typography_body_class' );
+add_filter( 'body_class', 'vagabond_theme_typography_body_class' );
 /**
  * Adds a unique class to the body element.
  *
  * @since 1.0.0
+ *
  * @param array $classes Array of classes applied to the body class attribute.
+ *
  * @return array $classes The updated array of classes applied to the body class attribute.
  */
-function prototipo_theme_typography_body_class( $classes ) {
+function vagabond_theme_typography_body_class( $classes ) {
 
 	$classes[] = 'typography-test';
+
 	return $classes;
+
+}
+
+add_filter( 'vagabond_default_content_layout', 'vagabond_set_typography_page_layout' );
+/**
+ * Force the full-width-padded content layout.
+ *
+ * See /includes/layouts.php.
+ *
+ * @since 1.0.0
+ *
+ * @param string $layout The current default layout.
+ *
+ * @return string $layout The new default layout.
+ */
+function vagabond_set_typography_page_layout( $layout ) {
+
+	// Define the page layout.
+	$layout = 'full-width-padded';
+
+	return $layout;
 
 }
 
