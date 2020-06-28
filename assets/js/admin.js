@@ -7,9 +7,8 @@
  * @license    GPL-2.0+
  */
 
-(function( $ ) {
-
-	"use strict";
+( function( $ ) {
+	'use strict';
 
 	$( document ).ready( function() {
 
@@ -20,23 +19,24 @@
 		 */
 
 		// Add .selected class if a layout input is checked.
-		$( '#vagabond-layout-meta-box input[type="radio"]' ).filter( ':checked' ).each( function( index ) {
-
-		    $( this ).parent( 'label' ).addClass( 'selected' );
-
-		} );
+		$( '#vagabond-layout-meta-box input[type="radio"]' )
+			.filter( ':checked' )
+			.each( function( index ) {
+				$( this )
+					.parent( 'label' )
+					.addClass( 'selected' );
+			});
 
 		// Remove current .selected class then add to new selected layout.
 		$( '#vagabond-layout-meta-box .box' ).on( 'change', function() {
 
 			// Remove class from label.
-			$( 'input[name="' + $( event.target ).attr( 'name' ) + '"]' ).parent( 'label' ).removeClass( 'selected' );
+			$( 'input[name="' + $( event.target ).attr( 'name' ) + '"]' )
+				.parent( 'label' )
+				.removeClass( 'selected' );
 
 			// Add class to selected layout.
 			$( event.currentTarget ).addClass( 'selected' );
-
-		} );
-
-	} );
-
-} ) ( jQuery );
+		});
+	});
+}( jQuery ) );
