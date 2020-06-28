@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				<?php if ( is_active_sidebar( 'footer-widgets-1' ) || is_active_sidebar( 'footer-widgets-2' ) || is_active_sidebar( 'footer-widgets-3' ) ) : ?>
 
-				<div class="row">
+				<div class="footer-widgets-top row">
 					<?php if ( is_active_sidebar( 'footer-widgets-1' ) ) : ?>
 					<div class="col-sm-12 col-md-4">
 						<?php dynamic_sidebar( 'footer-widgets-1' ); ?>
@@ -49,7 +49,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php endif; ?>
 
 				<?php if ( is_active_sidebar( 'footer-widgets-4' ) ) : ?>
-				<div>
+				<div class="footer-widgets-bottom">
 					<?php dynamic_sidebar( 'footer-widgets-4' ); ?>
 				</div>
 				<?php endif; ?>
@@ -58,9 +58,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php endif; ?>
 
-		<footer id="site-footer" itemscope="" itemtype="https://schema.org/WPFooter">
+		<footer id="site-footer" itemscope itemtype="https://schema.org/WPFooter">
 			<div class="wrap">
-				<nav id="nav-footer" aria-label="Footer" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+				<nav id="nav-footer" aria-label="Footer" role="navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
 					<?php
 					wp_nav_menu(
 						array(
@@ -74,21 +74,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</nav>
 
 				<div class="footer-creds">
-					<p>
-						<?php
-						if ( get_theme_mod( 'vagabond_footer_creds' ) ) {
-							echo wp_kses_post( get_theme_mod( 'vagabond_footer_creds' ) );
-						} else {
-							echo esc_html__( 'Copyright', 'vagabond' ) . ' &copy; ' . esc_html( date( 'Y' ) );
-							echo ' ' . esc_html( get_bloginfo( 'name' ) ) . ' <br><span>|</span> ';
-							echo sprintf(
-								/* translators: %s: Developer URL */
-								esc_html__( 'Website by %s', 'vagabond' ),
-								'<a href="http://www.alexisvillegas.com/" target="_blank">AJV</a>'
-							);
-						}
-						?>
-					</p>
+					<p><?php vagabond_footer_creds(); ?></p>
 				</div>
 			</div>
 		</footer><!-- .site-footer -->
