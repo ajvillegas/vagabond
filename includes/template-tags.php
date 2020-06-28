@@ -66,7 +66,7 @@ if ( ! function_exists( 'vagabond_posted_by' ) ) {
 		if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 			if ( get_comments_number() > 0 ) {
 
-				echo '- <span class="comments-link">';
+				echo '<span class="comments-link"> - ';
 					comments_popup_link( '' );
 				echo '</span>';
 
@@ -85,7 +85,7 @@ if ( ! function_exists( 'vagabond_entry_footer' ) ) {
 	function vagabond_entry_footer() {
 
 		// Hide category and tag text for pages.
-		if ( 'post' === get_post_type() ) {
+		if ( is_singular( 'post' ) ) {
 			/* translators: used between list items, there is a space after the comma */
 			$categories_list = get_the_category_list( esc_html__( ', ', 'vagabond' ) );
 
@@ -135,24 +135,36 @@ if ( ! function_exists( 'vagabond_post_thumbnail' ) ) {
 	 */
 	function vagabond_post_thumbnail() {
 
-		if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
+		if ( post_password_required() || is_attachment() ) {
 			return;
 		}
 
-		if ( ! is_singular() ) {
+		// Define the default featured image.
+		$default_img_url  = get_theme_mod( 'vagabond_default_featured_image' );
+		$default_img_id   = attachment_url_to_postid( $default_img_url );
+		$default_img_size = wp_get_attachment_image_src( $default_img_id, 'featured-image' )[0];
+		$default_img      = $default_img_size ? $default_img_size : VAGABOND_IMAGES . '/default-featured-image.jpg';
+
+		if ( ! is_singular() || is_front_page() || is_page_template( 'page-templates/template-posts.php' ) ) {
 			?>
 			<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
 				<?php
-				the_post_thumbnail(
-					'post-thumbnail',
-					array(
-						'alt' => the_title_attribute(
-							array(
-								'echo' => false,
-							)
-						),
-					)
-				);
+				if ( has_post_thumbnail() ) {
+					the_post_thumbnail(
+						'featured-image',
+						array(
+							'alt' => the_title_attribute(
+								array(
+									'echo' => false,
+								)
+							),
+						)
+					);
+				} else {
+					?>
+					<img src="<?php echo esc_url( $default_img ); ?>" alt="<?php the_title(); ?>" />
+					<?php
+				}
 				?>
 			</a>
 			<?php
@@ -204,7 +216,9 @@ if ( ! function_exists( 'vagabond_get_sitemap' ) ) {
 	 * Generate markup for an HTML sitemap.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @param string $heading Heading element; defaults to `h2`.
+	 *
 	 * @return string $sitemap Sitemap content.
 	 */
 	function vagabond_get_sitemap( $heading = 'h2' ) {
@@ -243,18 +257,18 @@ if ( ! function_exists( 'vagabond_header_hero' ) ) {
 	 * @since 1.0.0
 	 */
 	function vagabond_header_hero() {
-		// Bail if on front page.
-		if ( is_front_page() ) {
-			return;
-		}
 
-		// Hero image background.
+		// Define default images.
+		$default_image = get_theme_mod( 'vagabond_default_featured_image' ) ? get_theme_mod( 'vagabond_default_featured_image' ) : VAGABOND_IMAGES . '/default-hero-image.jpg';
+		$default_404   = get_theme_mod( 'vagabond_default_404_image' ) ? get_theme_mod( 'vagabond_default_404_image' ) : VAGABOND_IMAGES . '/404.jpg';
+
+		// Define hero image background.
 		if ( is_search() || is_archive() || is_home() ) {
-			$hero_image = VAGABOND_IMAGES . '/default-hero-image.jpg';
+			$hero_image = $default_image;
 		} elseif ( is_404() ) {
-			$hero_image = VAGABOND_IMAGES . '/404.jpg';
+			$hero_image = $default_404;
 		} else {
-			$hero_image = has_post_thumbnail() ? get_the_post_thumbnail_url() : VAGABOND_IMAGES . '/default-hero-image.jpg';
+			$hero_image = has_post_thumbnail() ? get_the_post_thumbnail_url() : $default_image;
 		}
 
 		?>
@@ -267,7 +281,17 @@ if ( ! function_exists( 'vagabond_header_hero' ) ) {
 						/* translators: %s: search query. */
 						printf( '<h1 class="archive-title" itemprop="headline">' . esc_html__( 'Search Results for: %s', 'vagabond' ) . '</h1>', get_search_query() );
 					} elseif ( is_archive() ) {
-						the_archive_title( '<h1 class="archive-title" itemprop="headline">', '</h1>' );
+						if ( is_category() ) {
+							$prefix = esc_html__( 'Category:', 'vagabond' ) . ' ';
+						} elseif ( is_tag() ) {
+							$prefix = esc_html__( 'Tag:', 'vagabond' ) . ' ';
+						} elseif ( is_author() ) {
+							$prefix = esc_html__( 'Author:', 'vagabond' ) . ' ';
+						} else {
+							$prefix = '';
+						}
+
+						the_archive_title( '<h1 class="archive-title" itemprop="headline">' . $prefix, '</h1>' );
 					} elseif ( is_home() ) {
 						$blog_title = single_post_title( '', false ) ? single_post_title( '', false ) : esc_html__( 'Blog', 'vagabond' );
 
@@ -299,5 +323,110 @@ if ( ! function_exists( 'vagabond_header_hero' ) ) {
 			</div>
 		</div>
 		<?php
+	}
+}
+
+if ( ! function_exists( 'vagabond_post_hero' ) ) {
+	/**
+	 * Prints HTML for the post hero image with post title and entry meta.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $category The category slug.
+	 */
+	function vagabond_post_hero( $category = '' ) {
+
+		// Custom query.
+		$args = array(
+			'post_type'      => 'post',
+			'category_name'  => sanitize_title_with_dashes( strtolower( $category ) ),
+			'posts_per_page' => 1, // Select the latest post only.
+			'no_found_rows'  => true, // No need for pagination, so skip it altogether.
+			'cache_results'  => false, // Bypass the extra caching queries to speed up the query process.
+		);
+
+		$the_query = new WP_Query( $args );
+
+		if ( $the_query->have_posts() ) :
+
+			while ( $the_query->have_posts() ) :
+
+				$the_query->the_post();
+
+				// Define hero image.
+				$default_image = get_theme_mod( 'vagabond_default_featured_image' ) ? get_theme_mod( 'vagabond_default_featured_image' ) : VAGABOND_IMAGES . '/default-hero-image.jpg';
+				$hero_image    = has_post_thumbnail() ? get_the_post_thumbnail_url() : $default_image;
+
+				?>
+				<div class="header-hero the-post" style="background-image: url(<?php echo esc_url( $hero_image ); ?>);">
+					<div class="wrap">
+						<article>
+							<header class="entry-header">
+								<?php
+								$categories_list = get_the_category_list( ' ' );
+
+								if ( $categories_list ) {
+									echo '<div class="categories">';
+										echo $categories_list; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+									echo '</div>';
+								}
+
+								echo '<h2 class="entry-title" itemprop="headline">' . esc_html( get_the_title() ) . '</h2>';
+
+								echo '<div class="entry-meta">';
+									vagabond_posted_on();
+									vagabond_posted_by();
+								echo '</div>';
+								?>
+							</header>
+
+							<div class="entry-content">
+								<?php the_excerpt(); ?>
+							</div>
+						</article>
+					</div>
+				</div>
+				<?php
+
+			endwhile; // End of the loop.
+
+			// Reset post data.
+			wp_reset_postdata();
+
+		else :
+
+			vagabond_header_hero();
+
+		endif;
+	}
+}
+
+if ( ! function_exists( 'vagabond_footer_creds' ) ) {
+	/**
+	 * Prints HTML for the footer credits.
+	 *
+	 * @since 1.0.0
+	 */
+	function vagabond_footer_creds() {
+
+		// Define custom content filters.
+		add_filter( 'vagabond_footer_content', 'wptexturize' );
+		add_filter( 'vagabond_footer_content', 'shortcode_unautop' );
+		add_filter( 'vagabond_footer_content', 'do_shortcode' );
+
+		if ( get_theme_mod( 'vagabond_footer_creds' ) ) {
+			$footer_creds = apply_filters( 'vagabond_footer_content', wp_kses_post( get_theme_mod( 'vagabond_footer_creds' ) ) );
+
+			echo wp_kses_post( $footer_creds );
+		} else {
+			echo esc_html__( 'Copyright', 'vagabond' ) . ' &copy; ' . esc_html( date_i18n( 'Y' ) );
+			echo ' ' . esc_html( get_bloginfo( 'name' ) ) . ' <br><span>|</span> ';
+			echo sprintf(
+				/* translators: %s: Developer URL */
+				esc_html__( 'Website by %s', 'vagabond' ),
+				'<a href="//www.alexisvillegas.com/" target="_blank">AJV</a>'
+			);
+		}
+
 	}
 }
