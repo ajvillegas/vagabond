@@ -22,7 +22,9 @@ if ( ! is_active_sidebar( 'primary-sidebar' )
 }
 
 ?>
-<aside id="primary-sidebar" class="sidebar" role="complementary" aria-label="Primary Sidebar" itemscope="" itemtype="https://schema.org/WPSideBar">
-	<h2 class="site-sidebar-title screen-reader-text"><?php esc_html_e( 'Primary Sidebar', 'vagabond' ); ?></h2>
+<aside id="primary-sidebar" class="sidebar" role="complementary" aria-label="Primary Sidebar" itemscope itemtype="https://schema.org/WPSideBar">
+	<h2 class="site-sidebar-title screen-reader-text">
+		<?php echo esc_html__( 'Primary Sidebar', 'vagabond' ); ?>
+	</h2>
 	<?php dynamic_sidebar( 'primary-sidebar' ); ?>
 </aside>
