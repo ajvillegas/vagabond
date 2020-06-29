@@ -5,7 +5,7 @@
   "author": "Alexis J. Villegas (https://www.alexisvillegas.com/)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ajvillegas/vagabond-wp"
+    "url": "https://github.com/ajvillegas/vagabond"
   },
   "license": "MIT",
   "devDependencies": {
