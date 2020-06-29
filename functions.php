@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define theme constants (do not remove).
-require_once get_template_directory() . '/inc/init.php';
+require_once get_template_directory() . '/includes/init.php';
 
 // Load theme files (do not remove).
 require_once VAGABOND_INC_DIR . '/theme-setup.php';
