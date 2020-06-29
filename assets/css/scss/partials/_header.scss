@@ -82,20 +82,10 @@ p.site-title {
 	}
 }
 
-// Page header hero.
-/* .page,
-.archive {
-	.header-hero {
-		background-image: url(assets/images/page-hero-image.jpg);
-	}
-} */
-
 // Homepage and Post header hero.
 .single-post,
 .home {
 	.header-hero {
-		//background-image: url(assets/images/home-hero-image.jpg);
-
 		.categories {
 			margin-bottom: 1rem;
 
@@ -147,7 +137,7 @@ p.site-title {
 
 // Homepage header hero.
 .home {
-	.header-hero {
+	.header-hero.the-post {
 		.wrap {
 			justify-content: left;
 			padding: 12vh $small-spacing;
@@ -188,16 +178,33 @@ p.site-title {
 		}
 
 		.entry-content {
-			p:last-of-type {
-				margin-bottom: $base-spacing;
+			p {
+				font-size: $base-font-size !important;
+
+				&:last-of-type {
+					margin-bottom: 0;
+				}
 			}
 
 			.more-link {
+				display: block;
+				max-width: 145px;
+				margin-top: 3.2rem;
 				border: 2px solid #fff;
 				color: #fff;
+				border-radius: 50px;
+				padding: 1.4rem 3rem;
+				background-color: transparent;
+				text-decoration: none;
+				font-size: 1.4rem;
+				line-height: 1;
+				text-transform: uppercase;
+				font-weight: 600;
+				text-align: center;
 
 				&:hover,
 				&:focus {
+					outline: none;
 					background-color: #fff;
 					border: 2px solid #fff;
 					color: $base-font-color;
