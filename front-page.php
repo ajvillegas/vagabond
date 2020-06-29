@@ -13,20 +13,112 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-add_filter( 'body_class', 'vagabond_landing_body_class' );
-/**
- * Adds a unique class to the body element.
- *
- * @since 1.0.0
- * @param array $classes Array of classes applied to the body class attribute.
- * @return array $classes The updated array of classes applied to the body class attribute.
- */
-function vagabond_landing_body_class( $classes ) {
+get_header();
 
-	$classes[] = 'theme-homepage';
-	return $classes;
+?>
+<div class="content-sidebar-wrap">
+	<main id="site-content" class="content">
 
-}
+		<?php
+		// Custom query.
+		$args = array(
+			'post_type'      => 'post',
+			'posts_per_page' => 6, // Select the last six posts only.
+			'no_found_rows'  => true, // No need for pagination, so skip it altogether.
+			'cache_results'  => false, // Bypass the extra caching queries to speed up the query process.
+		);
 
-// Reuse the page.php template.
-require_once 'page.php';
+		$the_query = new WP_Query( $args );
+
+		if ( $the_query->have_posts() ) :
+
+			?>
+			<div class="large-posts row">
+			<?php
+
+			while ( $the_query->have_posts() ) :
+
+				$the_query->the_post();
+
+				if ( 1 === $the_query->current_post || 2 === $the_query->current_post ) {
+					?>
+					<div class="col-sm-12 col-md-6">
+						<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?> itemscope itemtype="https://schema.org/CreativeWork">
+
+							<?php vagabond_post_thumbnail(); ?>
+
+							<header class="entry-header">
+								<?php
+								the_title( '<h2 class="entry-title" itemprop="headline"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+								?>
+
+								<div class="entry-meta">
+								<?php
+								vagabond_posted_on();
+								vagabond_posted_by();
+								?>
+								</div><!-- .entry-meta -->
+							</header><!-- .entry-header -->
+
+							<div class="entry-content" itemprop="text">
+								<?php the_excerpt(); ?>
+							</div><!-- .entry-content -->
+						</article><!-- #post-<?php the_ID(); ?> -->
+					</div>
+					<?php
+				}
+
+			endwhile; // End of the loop.
+
+			?>
+			</div>
+
+			<div class="short-posts row">
+			<?php
+
+			while ( $the_query->have_posts() ) :
+
+				$the_query->the_post();
+
+				if ( 3 === $the_query->current_post || 4 === $the_query->current_post || 5 === $the_query->current_post ) {
+					?>
+					<div class="col-sm-12 col-md-4">
+						<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?> itemscope itemtype="https://schema.org/CreativeWork">
+
+							<?php vagabond_post_thumbnail(); ?>
+
+							<header class="entry-header">
+								<?php
+								the_title( '<h2 class="entry-title" itemprop="headline"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+								?>
+							</header><!-- .entry-header -->
+						</article><!-- #post-<?php the_ID(); ?> -->
+					</div>
+					<?php
+				}
+
+			endwhile; // End of the loop.
+
+			?>
+			</div>
+
+			<div class="blog-link">
+				<a href="<?php echo esc_url( get_post_type_archive_link( 'post' ) ); ?>"><?php echo esc_html__( 'More Posts', 'vagabond' ); ?></a>
+			</div>
+			<?php
+
+			// Reset post data.
+			wp_reset_postdata();
+
+		else :
+
+			get_template_part( 'template-parts/content', 'none' );
+
+		endif;
+		?>
+
+	</main><!-- .content -->
+</div><!-- .content-sidebar-wrap -->
+<?php
+
+get_footer();
