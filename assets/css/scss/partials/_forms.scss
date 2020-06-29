@@ -1,7 +1,8 @@
 /* ## Forms
 --------------------------------------------- */
 
-fieldset {
+fieldset,
+div.wpcf7 {
 	background-color: lighten($base-border-color, 10%);
 	border: $base-border;
 	margin: 0 0 $small-spacing;
@@ -135,6 +136,28 @@ select {
 	color: #c3251d;
 }
 
+// Contact From 7 plugin.
+div.wpcf7 {
+	label {
+		margin-bottom: 0;
+	}
+
+	#{$all-text-inputs},
+	select {
+		margin-top: $small-spacing / 2;
+	}
+}
+
+span.wpcf7-not-valid-tip {
+	color: #c3251d;
+}
+
+div.wpcf7-validation-errors,
+div.wpcf7-acceptance-missing {
+	border: 2px solid #c3251d;
+	font-size: 1.8rem;
+}
+
 // Search Form.
 .search-form {
 	position: relative;
@@ -155,6 +178,10 @@ select {
 		bottom: 0;
 		border-radius: 0;
 	}
+}
+
+.content .search-form {
+	max-width: 400px;
 }
 
 .entry-content .search-form {
