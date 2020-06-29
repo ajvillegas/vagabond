@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div class="entry-content" itemprop="text">
 		<?php
-		if ( is_home() && current_user_can( 'publish_posts' ) ) :
+		if ( ( is_home() || is_front_page() || is_page_template( 'page-templates/template-posts.php' ) ) && current_user_can( 'publish_posts' ) ) :
 
 			printf(
 				/* translators: 1: new post page URL opening tag, 2: new post page URL closing tag. */
