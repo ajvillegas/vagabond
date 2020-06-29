@@ -44,36 +44,3 @@ function vagabond_get_icon( $slug = '' ) {
 	}
 
 }
-
-add_action( 'wp_footer', 'vagabond_grid_overlay' );
-/**
- * Display a column grid overlay.
- *
- * This function displays a column grid overlay when adding
- * '?grid=true' to the end of any URL in the front-end.
- *
- * @since 1.0.0
- * @author Bill Erickson
- * @link http://www.billerickson.net/overlay-css-grid
- */
-function vagabond_grid_overlay() {
-
-	if ( ! isset( $_GET['grid'] ) || 'true' !== $_GET['grid'] ) { // phpcs:ignore WordPress.Security.NonceVerification
-		return;
-	}
-
-	$columns = 12;
-
-	?>
-	<div class="grid-overlay">
-		<div class="wrap">
-			<div class="col"></div>
-			<?php for ( $i = 0; $i < ( $columns - 1 ); $i++ ) : ?>
-				<div class="gutter"></div>
-				<div class="col"></div>
-			<?php endfor; ?>
-		</div>
-	</div>
-	<?php
-
-}
