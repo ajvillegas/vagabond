@@ -14,7 +14,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?> itemscope="" itemtype="https://schema.org/CreativeWork">
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?> itemscope itemtype="https://schema.org/CreativeWork">
+
+	<?php vagabond_post_thumbnail(); ?>
+
 	<header class="entry-header">
 		<?php
 		the_title( sprintf( '<h2 class="entry-title" itemprop="headline"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
@@ -30,15 +33,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<?php vagabond_post_thumbnail(); ?>
-
 	<div class="entry-summary">
 		<?php the_excerpt(); ?>
 	</div><!-- .entry-summary -->
 
-	<footer class="entry-footer">
-		<div class="entry-meta">
-			<?php vagabond_entry_footer(); ?>
-		</div>
-	</footer><!-- .entry-footer -->
+	<?php if ( is_singular() ) : ?>
+		<footer class="entry-footer">
+			<div class="entry-meta">
+				<?php vagabond_entry_footer(); ?>
+			</div>
+		</footer><!-- .entry-footer -->
+	<?php endif; ?>
 </article><!-- #post-<?php the_ID(); ?> -->
