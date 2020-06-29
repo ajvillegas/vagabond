@@ -1,12 +1,12 @@
 /*!
 Theme Name: Vagabond
-Theme URI: http://www.alexisvillegas.com/services/
+Theme URI: https://www.alexisvillegas.com/services/
 Description: A travel and lifestyle blog theme for WordPress.
 Author: Alexis J. Villegas
-Author URI: http://www.alexisvillegas.com/
+Author URI: https://www.alexisvillegas.com/
 Version: 1.0.0
 Text Domain: vagabond
-Tags: one-column, two-columns, left-sidebar, right-sidebar, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, sticky-post, threaded-comments, translation-ready
+Tags: one-column, two-columns, left-sidebar, right-sidebar, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, threaded-comments, translation-ready
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -38,7 +38,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 ---------------------------------------------------------------------------------------------------- */
 
 @import 'partials/containers';
-//@import 'partials/columns';
 
 /* # Site Header
 ---------------------------------------------------------------------------------------------------- */
@@ -54,9 +53,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 ---------------------------------------------------------------------------------------------------- */
 
 @import 'partials/content';
-//@import 'partials/archives';
+@import 'partials/archives';
 @import 'partials/entry-meta';
 @import 'partials/comments';
+
+/* # Sidebar
+---------------------------------------------------------------------------------------------------- */
+
+@import 'partials/sidebar';
 
 /* # Site Footer
 ---------------------------------------------------------------------------------------------------- */
@@ -66,22 +70,24 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /* # Widgets
 ---------------------------------------------------------------------------------------------------- */
 
-//@import 'partials/widgets';
+@import 'partials/widgets';
 
 /* # Plugins
 ---------------------------------------------------------------------------------------------------- */
 
-//@import 'partials/plugins';
+@import 'partials/plugins';
 
 /* # Page Templates
 ---------------------------------------------------------------------------------------------------- */
 
 @import 'partials/color-palette';
-//@import 'partials/projects';
-
-/* # Block Editor
----------------------------------------------------------------------------------------------------- */
+@import 'partials/featured-posts';
 
 //@import 'partials/block-editor';
+
+/* # Portfolio
+---------------------------------------------------------------------------------------------------- */
+
+@import 'partials/portfolio';
 
 @import 'partials/visual-grid';
