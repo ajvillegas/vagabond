@@ -18,6 +18,15 @@
 			text-decoration: underline;
 		}
 	}
+
+	.comments-link {
+		display: none;
+	}
+}
+
+.singular .entry-meta .comments-link,
+.header-hero.the-post .entry-meta .comments-link {
+	display: inline;
 }
 
 .header-hero .entry-meta {
