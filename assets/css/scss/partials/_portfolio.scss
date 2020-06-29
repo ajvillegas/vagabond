@@ -1,0 +1,64 @@
+.portfolio-single {
+	.sidebar {
+		@media only screen and (min-width: 900px) {
+			position: sticky;
+			top: 100px;
+		}
+
+		.widget {
+			background: #363636;
+			color: #ddd;
+			padding: 4.5rem;
+		}
+
+		.widget-title {
+			color: #fff;
+		}
+
+		.description {
+			margin-bottom: $small-spacing;
+		}
+
+		.icon-details {
+			@include clearfix;
+			font-size: 1.6rem;
+			margin-bottom: 5px;
+
+			svg {
+				height: 19px;
+				position: relative;
+				top: 1px;
+				margin-right: 10px;
+				float: left;
+
+				g {
+					fill: #ddd;
+				}
+			}
+
+			p {
+				overflow: hidden;
+			}
+
+			span {
+				color: #fff;
+				font-weight: 700;
+				font-size: 1.5rem;
+				letter-spacing: 0.1rem;
+				text-transform: uppercase;
+			}
+		}
+
+		.button {
+			margin-top: $small-spacing;
+			text-align: center;
+			width: 100%;
+
+			&:focus,
+			&:hover {
+				background-color: darken($primary-color, 5%);
+				border-color: darken($primary-color, 5%);
+			}
+		}
+	}
+}
