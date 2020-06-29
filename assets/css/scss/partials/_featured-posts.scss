@@ -1,0 +1,38 @@
+/* ## Featured Posts
+--------------------------------------------- */
+
+.featured-posts {
+	.posts-section {
+		margin-top: 2rem;
+
+		article {
+			background-color: #fff;
+			margin-bottom: 6rem;
+		}
+
+		.entry-header {
+			padding: 3rem;
+		}
+
+		.entry-title {
+			margin-bottom: 1rem;
+			font-weight: 400;
+			font-size: 2.8rem;
+
+			a {
+				color: $base-font-color;
+				text-decoration: none;
+
+				&:hover,
+				&:focus {
+					color: $primary-color;
+				}
+			}
+		}
+	}
+
+	.no-results {
+		background: #fff;
+		padding: 5rem 6rem;
+	}
+}
