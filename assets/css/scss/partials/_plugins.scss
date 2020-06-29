@@ -1,0 +1,26 @@
+/* ## Breadcrumb Trail
+--------------------------------------------- */
+
+.breadcrumbs {
+	font-size: 13px;
+	text-transform: uppercase;
+	margin-bottom: $base-spacing;
+	color: $medium-grey;
+
+	.trail-browse {
+		font-family: $base-font-family;
+		margin-right: 8px !important;
+	}
+}
+
+/* ## Jetpack
+--------------------------------------------- */
+
+// Hide the WordPress stats smiley.
+img#wpstats {
+	position: absolute;
+	top: 0;
+	width: 0px;
+	height: 0px;
+	overflow: hidden;
+}
