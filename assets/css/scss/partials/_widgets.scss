@@ -1,0 +1,157 @@
+/* ## Calendar
+--------------------------------------------- */
+
+.widget_calendar table {
+	width: 100%;
+}
+
+.widget_calendar td,
+.widget_calendar th {
+	text-align: center;
+}
+
+/* ## Featured Page Widget
+--------------------------------------------- */
+
+.vgb-featured-page {
+	.featured-page {
+		position: relative;
+		background-color: #000;
+		overflow: hidden;
+		margin-bottom: 3rem;
+		box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.05);
+
+		.entry-image,
+		.entry-image img {
+			display: block;
+		}
+
+		.entry-image img {
+			opacity: 0.5;
+			transition: 0.5s ease-out;
+		}
+
+		.entry-header:hover img,
+		.entry-image:focus img {
+			transform: scale(1.05);
+			opacity: 0.8;
+		}
+
+		.entry-title {
+			position: absolute;
+			margin: 0;
+			text-align: center;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-weight: 400;
+			font-size: 3.4rem;
+
+			a {
+				color: #fff;
+				text-decoration: none;
+				text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+			}
+		}
+	}
+}
+
+/* ## CTA Form Widget
+--------------------------------------------- */
+
+.vgb-cta-form {
+	.form-cta {
+		text-align: center;
+
+		&:before {
+			@include media(medium) {
+				content: '';
+				background-color: $primary-color;
+				display: block;
+				height: 100px;
+				margin: 0 auto -50px auto;
+				position: relative;
+				width: 2px;
+				z-index: 99;
+			}
+		}
+
+		.heading {
+			font-weight: 400;
+			font-size: 4.4rem;
+			margin-bottom: 3rem;
+		}
+
+		fieldset {
+			background-color: #fff;
+			border: none;
+			box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.05);
+			padding: 7% 7%;
+			margin: 0;
+
+			@include media(medium) {
+				padding: 12rem 8rem 8rem;
+			}
+
+			.form-wrap {
+				max-width: 750px;
+				margin: 0 auto;
+			}
+
+			p {
+				font-size: 1.8rem;
+				margin-bottom: 3rem;
+			}
+		}
+
+		p.disclaimer {
+			font-size: 14px !important;
+			margin-bottom: 0;
+		}
+
+		// Subscribe Form.
+		div.wpcf7 {
+			max-width: 400px;
+			margin: 0 auto;
+			padding: 0;
+			background: transparent;
+			border: none;
+
+			form {
+				position: relative;
+
+				p {
+					margin-bottom: 0;
+				}
+
+				input[type='email'] {
+					margin: 0;
+					padding-right: 120px;
+					border: 1px solid darken($light-grey, 5%);
+
+					&:hover,
+					&:focus {
+						border-color: darken($light-grey, 30%);
+					}
+				}
+
+				input[type='submit'] {
+					position: absolute;
+					right: 0;
+					top: 0;
+					height: 48px;
+					border-radius: 0;
+				}
+			}
+		}
+
+		span.wpcf7-not-valid-tip {
+			font-size: 1.7rem;
+			margin-top: 1.5rem;
+		}
+
+		div.wpcf7-response-output {
+			margin: 0 0 1rem;
+		}
+	}
+}
