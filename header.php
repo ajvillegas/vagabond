@@ -2,7 +2,8 @@
 /**
  * The header for our theme.
  *
- * This is the template that displays all of the <head> section and everything up until <div class="site-inner">.
+ * This is the template that displays all of the <head> section and everything up until
+ * <div class="site-inner">.
  *
  * @package    Vagabond
  * @author     Alexis J. Villegas
@@ -18,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <!doctype html>
 <html <?php language_attributes( 'html' ); ?> class="no-js">
-<head itemscope="" itemtype="https://schema.org/WebSite">
+<head itemscope itemtype="https://schema.org/WebSite">
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?> itemscope="" itemtype="https://schema.org/WebPage">
+<body <?php body_class(); ?> itemscope itemtype="https://schema.org/WebPage">
 	<div class="site-container">
 		<ul class="site-skip-links">
 			<li>
@@ -48,19 +49,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</li>
 		</ul>
 
-		<header class="site-header" itemscope="" itemtype="https://schema.org/WPHeader">
-			<nav id="nav-menu" class="navbar navbar-expand-md" role="navigation">
+		<header class="site-header" itemscope itemtype="https://schema.org/WPHeader">
+			<nav id="nav-menu" class="navbar navbar-expand-md" role="navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
 				<?php
 				if ( function_exists( 'has_custom_logo' ) && has_custom_logo() ) :
-					?>
-					<p class="screen-reader-text"><?php echo bloginfo( 'name' ); ?></p>
-					<?php
-
 					the_custom_logo();
+
+					if ( is_front_page() ) :
+						?>
+						<h1 class="screen-reader-text"><?php echo bloginfo( 'name' ); ?></h1>
+						<?php
+					else :
+						?>
+						<p class="screen-reader-text"><?php echo bloginfo( 'name' ); ?></p>
+						<?php
+					endif;
 				else :
 					?>
 					<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						<?php if ( is_front_page() ) : ?>
+						<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
+						<?php else : ?>
 						<p class="site-title"><?php bloginfo( 'name' ); ?></p>
+						<?php endif; ?>
 					</a>
 					<?php
 				endif;
@@ -91,6 +102,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</nav><!-- #site-nav-primary -->
 		</header><!-- .site-header -->
 
-		<?php vagabond_header_hero(); ?>
+		<?php
+		if ( is_front_page() ) {
+			vagabond_post_hero();
+		} else {
+			vagabond_header_hero();
+		}
+		?>
 
 		<div class="site-inner">
