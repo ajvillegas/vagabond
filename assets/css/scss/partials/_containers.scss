@@ -18,22 +18,57 @@
 	padding-left: $small-spacing;
 }
 
-.content-sidebar {
-	.content {
-		@media only screen and (min-width: 900px) {
-			float: left;
-			width: col_width(2, 3, $max-width, $column-gutter);
-		}
+/* ### Content */
+
+.content-sidebar .content {
+	width: 100%;
+
+	@media only screen and (min-width: 900px) {
+		float: left;
+		width: col_width(2, 3, $max-width, $column-gutter);
 	}
+}
 
-	.sidebar {
-		margin-right: auto;
-		margin-left: auto;
+.sidebar-content .content {
+	width: 100%;
 
-		@media only screen and (min-width: 900px) {
-			float: right;
-			margin-left: percentage($column-gutter / $max-width);
-			width: col_width(1, 3, $max-width, $column-gutter);
-		}
+	@media only screen and (min-width: 900px) {
+		float: right;
+		margin-left: percentage($column-gutter / $max-width);
+		width: col_width(2, 3, $max-width, $column-gutter);
+	}
+}
+
+.full-width-padded .content > * {
+	width: 100%;
+
+	@media only screen and (min-width: 900px) {
+		margin: 0 auto;
+		width: col_width(2, 3, $max-width, $column-gutter);
+	}
+}
+
+.full-width-content .content {
+	width: 100%;
+}
+
+/* ### Sidebar */
+
+.content-sidebar .sidebar {
+	width: 100%;
+
+	@media only screen and (min-width: 900px) {
+		float: right;
+		margin-left: percentage($column-gutter / $max-width);
+		width: col_width(1, 3, $max-width, $column-gutter);
+	}
+}
+
+.sidebar-content .sidebar {
+	width: 100%;
+
+	@media only screen and (min-width: 900px) {
+		float: left;
+		width: col_width(1, 3, $max-width, $column-gutter);
 	}
 }
