@@ -25,17 +25,6 @@ get_header();
 	<main id="site-content" class="content">
 
 		<?php
-		if ( function_exists( 'breadcrumb_trail' ) ) {
-			breadcrumb_trail(
-				array(
-					'show_on_front' => false,
-					'labels'        => array(
-						'browse' => esc_html__( 'You are here:', 'vagabond' ),
-					),
-				)
-			);
-		}
-
 		if ( have_posts() ) :
 
 			while ( have_posts() ) :
