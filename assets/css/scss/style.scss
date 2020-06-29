@@ -6,7 +6,7 @@ Author: Alexis J. Villegas
 Author URI: https://www.alexisvillegas.com/
 Version: 1.0.0
 Text Domain: vagabond
-Tags: one-column, two-columns, left-sidebar, right-sidebar, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, threaded-comments, translation-ready
+Tags: one-column, two-columns, left-sidebar, right-sidebar, custom-menu, custom-logo, featured-images, footer-widgets, full-width-template, threaded-comments, translation-ready
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -83,11 +83,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 @import 'partials/color-palette';
 @import 'partials/featured-posts';
 
-//@import 'partials/block-editor';
-
 /* # Portfolio
 ---------------------------------------------------------------------------------------------------- */
 
 @import 'partials/portfolio';
-
-@import 'partials/visual-grid';
