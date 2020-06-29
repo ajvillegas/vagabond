@@ -13,8 +13,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Add the opening Bootstrap grid markup to posts.
+if ( is_home() || is_archive() ) {
+	echo '<div class="col-sm-12 col-md-6 col-lg-4">';
+}
+
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?> itemscope="" itemtype="https://schema.org/CreativeWork">
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?> itemscope itemtype="https://schema.org/CreativeWork">
+
+	<?php vagabond_post_thumbnail(); ?>
+
 	<?php if ( ! is_singular() ) : ?>
 		<header class="entry-header">
 			<?php
@@ -31,8 +39,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php endif; ?>
 		</header><!-- .entry-header -->
 	<?php endif; ?>
-
-	<?php vagabond_post_thumbnail(); ?>
 
 	<div class="entry-content" itemprop="text">
 		<?php
@@ -61,9 +67,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 		?>
 	</div><!-- .entry-content -->
 
-	<footer class="entry-footer">
-		<div class="entry-meta">
-			<?php vagabond_entry_footer(); ?>
-		</div>
-	</footer><!-- .entry-footer -->
+	<?php if ( is_singular() ) : ?>
+		<footer class="entry-footer">
+			<div class="entry-meta">
+				<?php vagabond_entry_footer(); ?>
+			</div>
+		</footer><!-- .entry-footer -->
+	<?php endif; ?>
 </article><!-- #post-<?php the_ID(); ?> -->
+<?php
+
+// Add the closing Bootstrap grid markup to posts.
+if ( is_home() || is_archive() ) {
+	echo '</div>';
+}
