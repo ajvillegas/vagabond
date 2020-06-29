@@ -1,9 +1,8 @@
-/* ## Color Palette Section
+/* ## Color Palette
 --------------------------------------------- */
 
 #colors {
 	@include clearfix;
-	//margin-bottom: $base-spacing;
 
 	.primary-color {
 		background-color: $primary-color;
@@ -143,7 +142,11 @@
 
 	.color-section {
 		@include clearfix;
-		//margin-bottom: $small-spacing;
+		margin-bottom: $base-spacing;
+
+		&:last-of-type {
+			margin-bottom: 0;
+		}
 
 		.color-group {
 			@include clearfix;
