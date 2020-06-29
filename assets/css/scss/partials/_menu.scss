@@ -18,8 +18,12 @@
 		margin: 0;
 		font-size: inherit;
 
-		h1 {
+		.site-title {
 			margin: 0;
+			font-family: $heading-font-family;
+			font-size: 24px;
+			font-weight: 700;
+			line-height: $heading-line-height;
 		}
 	}
 
