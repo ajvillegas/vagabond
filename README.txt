@@ -33,7 +33,7 @@ A starter theme for creating custom WordPress websites.
 
 = Does this theme support any plugins? =
 
-Vagabond includes support for Infinite Scroll in Jetpack.
+Vagabond includes support for Infinite Scroll in Jetpack and it integrates with the Breadcrumbs Trail plugin.
 
 == Changelog ==
 
