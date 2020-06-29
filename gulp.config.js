@@ -8,9 +8,9 @@
 module.exports = {
 
 	// Project options.
-	projectURL: 'https://dev.pcc.com/cas211w/vagabondwp/', // Local project URL of your already running site.
-	sslKey: '/Applications/MAMP/Library/OpenSSL/certs/dev.pcc.com.key', // Path to SSL localhost.key
-	sslCert: '/Applications/MAMP/Library/OpenSSL/certs/dev.pcc.com.crt', // Path to SSL localhost.crt
+	projectURL: 'https://dev.vagabond.com/', // Local project URL of your already running site.
+	sslKey: '/Applications/MAMP/Library/OpenSSL/certs/dev.vagabond.com.key', // Path to SSL localhost.key
+	sslCert: '/Applications/MAMP/Library/OpenSSL/certs/dev.vagabond.com.crt', // Path to SSL localhost.crt
 	productURL: './', // Theme/Plugin URL. Leave it like it is, since our gulpfile.js lives in the root folder.
 	browserAutoOpen: false,
 	injectChanges: true,
