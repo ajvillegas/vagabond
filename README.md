@@ -15,6 +15,10 @@ Vagabond is a travel and lifestyle blog theme for WordPress, perfect for travel 
 
 It features options for controlling layout globally or individually on each page/post, a hero image on every page, and a custom homepage layout that automatically displays your latest posts.
 
+### Companion Plugin
+
+The [Vagabond Core Functionality](https://github.com/ajvillegas/vagabond-core) plugin adds custom widgets to the theme that enhance its design and functionality. You can download the plugin here: [https://github.com/ajvillegas/vagabond-core](https://github.com/ajvillegas/vagabond-core).
+
 ## Installation
 
 ### Using The WordPress Dashboard
@@ -44,6 +48,6 @@ Vagabond includes support for Infinite Scroll in [Jetpack](https://wordpress.org
 
 ## Credits
 
-* Based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
-* Customizer controls based on Customizer Custom Controls https://github.com/maddisondesigns/customizer-custom-controls, Maddison Designs, [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
-* normalize.css https://necolas.github.io/normalize.css/, (C) 2012-2016 Nicolas Gallagher and Jonathan Neal, [MIT](https://opensource.org/licenses/MIT)
+* Based on Underscores [https://underscores.me/](https://underscores.me/), (C) 2012-2017 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
+* Customizer controls based on Customizer Custom Controls [https://github.com/maddisondesigns/customizer-custom-controls](https://github.com/maddisondesigns/customizer-custom-controls), Maddison Designs, [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
+* normalize.css [https://necolas.github.io/normalize.css/](https://necolas.github.io/normalize.css/), (C) 2012-2016 Nicolas Gallagher and Jonathan Neal, [MIT](https://opensource.org/licenses/MIT)
