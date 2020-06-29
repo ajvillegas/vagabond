@@ -61,13 +61,9 @@ p {
 	padding: 0;
 }
 
-p.lead-text,
-.single,
-.page {
-	.entry-content p:first-of-type {
-		font-size: $base-font-size * 1.2;
-		line-height: 1.5;
-	}
+p.lead-text {
+	font-size: $base-font-size * 1.2;
+	line-height: 1.5;
 }
 
 p.has-drop-cap:not(:focus)::first-letter {
