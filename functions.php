@@ -27,7 +27,7 @@ require_once VAGABOND_INC_DIR . '/template-tags.php';
 require_once VAGABOND_INC_DIR . '/layouts.php';
 require_once VAGABOND_INC_DIR . '/widget-areas.php';
 require_once VAGABOND_INC_DIR . '/scripts-and-styles.php';
-/* require_once VAGABOND_INC_DIR . '/integrations.php'; */
+require_once VAGABOND_INC_DIR . '/integrations.php';
 require_once VAGABOND_INC_DIR . '/customizer/customizer.php';
 
 // Load theme admin files when necessary (do not remove).
