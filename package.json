@@ -46,7 +46,7 @@
     "kind-of": ">=6.0.3",
     "lodash": ">=4.17.19",
     "lodash.template": ">=4.5.0",
-    "minimist": ">=1.2.3",
+    "minimist": ">=1.2.6",
     "tunnel-agent": ">=0.6.0",
     "yargs": "^13.2.2"
   },
